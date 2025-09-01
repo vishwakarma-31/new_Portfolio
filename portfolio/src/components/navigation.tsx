@@ -10,9 +10,9 @@ const Navigation = () => {
   useEffect(() => {
     const root = document.documentElement;
     if (isDark) {
-      root.classList.add('dark');
+      root.classList.add("dark");
     } else {
-      root.classList.remove('dark');
+      root.classList.remove("dark");
     }
   }, [isDark]);
 
@@ -26,36 +26,33 @@ const Navigation = () => {
   ];
 
   return (
-    <nav className="fixed top-6 left-1/2 -translate-x-1/2 z-50">
-      <div className="bg-nav-bg/80 backdrop-blur-sm border border-nav-border rounded-full px-6 py-3">
-        <div className="flex items-center gap-6">
-          {navItems.map((item, index) => (
-            <Link
-              key={index}
-              to={item.path}
-              className={`flex items-center gap-2 px-3 py-2 rounded-full transition-smooth text-sm font-medium ${
-                location.pathname === item.path
-                  ? "bg-primary text-primary-foreground"
-                  : "text-muted-foreground hover:text-foreground hover:bg-nav-hover"
-              }`}
-            >
-              <item.icon className="w-4 h-4" />
-              <span className="hidden md:inline">{item.label}</span>
-            </Link>
-          ))}
-          
-          <div className="w-px h-6 bg-nav-border mx-2" />
-          
-          <Button
-            variant="ghost"
-            size="sm"
-            onClick={() => setIsDark(!isDark)}
-            className="rounded-full p-2 hover:bg-nav-hover"
+    <nav className="fixed top-4 left-1/2 -translate-x-1/2 z-50 bg-white/70 dark:bg-black/40 backdrop-blur-lg border border-border rounded-full px-6 py-3 shadow-lg flex items-center gap-x-6 transition-all">
+      {navItems.map(({ icon: Icon, label, path }) => {
+        const isActive = location.pathname === path;
+        return (
+          <Link
+            key={path}
+            to={path}
+            className={`flex items-center gap-2 text-sm font-medium transition-colors ${
+              isActive
+                ? "text-primary border-b-2 border-primary pb-1"
+                : "text-muted-foreground hover:text-foreground"
+            }`}
           >
-            {isDark ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
-          </Button>
-        </div>
-      </div>
+            <Icon className="w-4 h-4" />
+            {label}
+          </Link>
+        );
+      })}
+
+      <Button
+        variant="ghost"
+        size="icon"
+        onClick={() => setIsDark(!isDark)}
+        className="ml-4 rounded-full p-2 transition-colors duration-300 ease-in-out"
+      >
+        {isDark ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+      </Button>
     </nav>
   );
 };
