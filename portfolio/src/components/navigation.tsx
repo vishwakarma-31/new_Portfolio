@@ -1,11 +1,20 @@
 import { Home, Code2, Award, GraduationCap, FolderOpen, Mail, Sun, Moon } from "lucide-react";
 import { Button } from "../components/ui/button";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 
 const Navigation = () => {
   const [isDark, setIsDark] = useState(true);
   const location = useLocation();
+
+  useEffect(() => {
+    const root = document.documentElement;
+    if (isDark) {
+      root.classList.add('dark');
+    } else {
+      root.classList.remove('dark');
+    }
+  }, [isDark]);
 
   const navItems = [
     { icon: Home, label: "Home", path: "/" },

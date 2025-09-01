@@ -128,6 +128,37 @@ button:focus-visible {
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     --transition-bounce: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
   }
+
+  .dark {
+    /* Dark theme colors (same as root for now) */
+    --background: 215 28% 7%;
+    --foreground: 210 40% 98%;
+    
+    --card: 217 33% 10%;
+    --card-foreground: 210 40% 98%;
+    
+    --popover: 217 33% 10%;
+    --popover-foreground: 210 40% 98%;
+    
+    --primary: 189 100% 50%;
+    --primary-foreground: 215 28% 7%;
+    
+    --secondary: 217 33% 17%;
+    --secondary-foreground: 210 40% 98%;
+    
+    --muted: 217 33% 17%;
+    --muted-foreground: 215 20% 65%;
+    
+    --accent: 189 100% 50%;
+    --accent-foreground: 215 28% 7%;
+    
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 210 40% 98%;
+    
+    --border: 217 33% 17%;
+    --input: 217 33% 17%;
+    --ring: 189 100% 50%;
+  }
 }
 
 @layer base {
