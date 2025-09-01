@@ -6,13 +6,8 @@ import SparkleIcon from "../components/sparkleicon";
 import { 
   Code2, 
   Database, 
-  Cloud, 
-  Smartphone, 
   Wrench, 
-  GitBranch,
-  Server,
-  Palette,
-  Globe
+  Server
 } from "lucide-react";
 
 const Skills = () => {
