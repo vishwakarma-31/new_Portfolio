@@ -1,8 +1,8 @@
-import Navigation from "@/components/Navigation";
-import { Badge } from "@/components/ui/badge";
-import { Card } from "@/components/ui/card";
-import { Progress } from "@/components/ui/progress";
-import SparkleIcon from "@/components/SparkleIcon";
+import Navigation from "../components/navigation";
+import { Badge } from "../components/ui/badge";
+import { Card } from "../components/ui/card";
+import { Progress } from "../components/ui/progress";
+import SparkleIcon from "../components/sparkleicon";
 import { 
   Code2, 
   Database, 

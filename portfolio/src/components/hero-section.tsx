@@ -1,8 +1,8 @@
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
+import { Button } from "../components/ui/button";
+import { Badge } from "../components/ui/badge";
 import { Rocket } from "lucide-react";
-import CodeEditor from "./CodeEditor";
-import SparkleIcon from "./SparkleIcon";
+import CodeEditor from "./code-editor";
+import SparkleIcon from "./sparkleicon";
 
 const HeroSection = () => {
   return (

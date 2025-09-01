@@ -1,10 +1,10 @@
-import Navigation from "@/components/Navigation";
-import { Card } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { Badge } from "@/components/ui/badge";
-import SparkleIcon from "@/components/SparkleIcon";
+import Navigation from "../components/navigation";
+import { Card } from "../components/ui/card";
+import { Button } from "../components/ui/button";
+import { Input } from "../components/ui/input";
+import { Textarea } from "../components/ui/textarea";
+import { Badge } from "../components/ui/badge";
+import SparkleIcon from "../components/sparkleicon";
 import { 
   Mail, 
   Phone, 

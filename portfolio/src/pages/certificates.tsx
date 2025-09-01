@@ -1,8 +1,8 @@
-import Navigation from "@/components/Navigation";
-import { Card } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import SparkleIcon from "@/components/SparkleIcon";
+import Navigation from "../components/navigation";
+import { Card } from "../components/ui/card";
+import { Badge } from "../components/ui/badge";
+import { Button } from "../components/ui/button";
+import SparkleIcon from "../components/sparkleicon";
 import { Award, ExternalLink, Calendar, Building } from "lucide-react";
 
 const Certificates = () => {

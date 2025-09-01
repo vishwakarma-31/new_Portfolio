@@ -1,5 +1,5 @@
-import Navigation from "@/components/Navigation";
-import HeroSection from "@/components/HeroSection";
+import Navigation from "../components/navigation";
+import HeroSection from "../components/hero-section";
 
 const Index = () => {
   return (

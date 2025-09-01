@@ -1,5 +1,5 @@
 import { Home, Code2, Award, GraduationCap, FolderOpen, Mail, Sun, Moon } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Button } from "../components/ui/button";
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 
