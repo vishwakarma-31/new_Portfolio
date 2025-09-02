@@ -1,6 +1,5 @@
 'use client';
 
-import ContactForm from '../../components/ContactForm';
 import { motion } from 'framer-motion';
 import { Send, Mail, Phone, MapPin, Clock, MessageCircle, Github, Linkedin, Twitter } from 'lucide-react';
 import { useState } from 'react';
@@ -383,9 +382,6 @@ export default function Contact() {
       </section>
 
       <ScrollToTop />
-
-      <h1>Contact Me</h1>
-      <ContactForm />
     </div>
   );
 }

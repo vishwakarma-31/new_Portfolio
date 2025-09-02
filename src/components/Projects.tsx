@@ -1,26 +1,136 @@
+'use client';
+
+import { motion } from 'framer-motion';
+import { ExternalLink, Github, Eye } from 'lucide-react';
 import { projects } from '../data/projects';
 
 export default function Projects() {
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.6
+      }
+    }
+  };
+
   return (
-    <section>
-      <h2 className="text-2xl font-bold mb-4">Projects</h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {projects.map((proj) => (
-          <div key={proj.name} className="border rounded-lg p-4 shadow">
-            <img src={proj.image} alt={proj.name} className="w-full h-40 object-cover rounded" />
-            <h3 className="text-xl mt-2 font-semibold">{proj.name}</h3>
-            <p className="mt-1">{proj.description}</p>
-            <div className="flex flex-wrap gap-2 mt-2">
-              {proj.tags.map((tag) => (
-                <span key={tag} className="bg-gray-200 px-2 py-1 rounded text-xs">{tag}</span>
-              ))}
-            </div>
-            <div className="flex gap-4 mt-4">
-              <a href={proj.link} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Live</a>
-              <a href={proj.github} target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:underline">GitHub</a>
-            </div>
-          </div>
-        ))}
+    <section className="py-20 px-4">
+      <div className="max-w-6xl mx-auto">
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+          className="text-center mb-16"
+        >
+          <h2 className="text-4xl font-bold mb-6 text-gradient">My Projects</h2>
+          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+            A showcase of my recent work and side projects that demonstrate my skills and passion for development.
+          </p>
+        </motion.div>
+
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          className="grid lg:grid-cols-2 gap-8"
+        >
+          {projects.map((project, index) => (
+            <motion.div
+              key={project.name}
+              variants={itemVariants}
+              className="glass-card rounded-xl overflow-hidden hover-lift group"
+            >
+              <div className="relative h-64 bg-gradient-to-br from-purple-500 to-blue-500 flex items-center justify-center overflow-hidden">
+                <div className="text-center text-white">
+                  <div className="w-20 h-20 bg-white/20 rounded-full mx-auto mb-4 flex items-center justify-center">
+                    <Eye className="w-10 h-10" />
+                  </div>
+                  <p className="text-lg font-semibold">{project.name}</p>
+                </div>
+                <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-4">
+                  <motion.a
+                    href={project.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.9 }}
+                    className="p-3 bg-white/20 backdrop-blur-sm rounded-full hover:bg-white/30 transition-colors"
+                  >
+                    <ExternalLink className="w-6 h-6 text-white" />
+                  </motion.a>
+                  <motion.a
+                    href={project.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.9 }}
+                    className="p-3 bg-white/20 backdrop-blur-sm rounded-full hover:bg-white/30 transition-colors"
+                  >
+                    <Github className="w-6 h-6 text-white" />
+                  </motion.a>
+                </div>
+              </div>
+
+              <div className="p-8">
+                <h3 className="text-2xl font-bold mb-4 group-hover:text-primary transition-colors">
+                  {project.name}
+                </h3>
+                <p className="text-gray-300 mb-6 leading-relaxed">
+                  {project.description}
+                </p>
+                <div className="flex flex-wrap gap-2 mb-6">
+                  {project.tags.map((tag) => (
+                    <span
+                      key={tag}
+                      className="px-3 py-1 bg-primary/20 text-primary text-sm rounded-full border border-primary/30"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+                <div className="flex gap-3">
+                  <motion.a
+                    href={project.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    className="flex-1 flex items-center justify-center gap-2 px-4 py-3 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors font-medium"
+                  >
+                    <Eye className="w-4 h-4" />
+                    Live Demo
+                  </motion.a>
+                  <motion.a
+                    href={project.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    className="flex-1 flex items-center justify-center gap-2 px-4 py-3 border border-primary text-primary rounded-lg hover:bg-primary hover:text-white transition-colors font-medium"
+                  >
+                    <Github className="w-4 h-4" />
+                    Code
+                  </motion.a>
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </motion.div>
       </div>
     </section>
   );
