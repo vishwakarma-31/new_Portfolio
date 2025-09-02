@@ -1,127 +1,99 @@
-# Modern Portfolio Website
+# 🚀 Next.js Portfolio
 
-A pixel-perfect recreation of a modern portfolio website built with Next.js, TypeScript, and Tailwind CSS.
+A modern, customizable developer portfolio built with [Next.js](https://nextjs.org/) and [Tailwind CSS](https://tailwindcss.com/).
 
-## 🚀 Features
+## ✨ Features
 
-- **Modern Design**: Clean, professional design with glass morphism effects
-- **Responsive Layout**: Fully responsive across all devices
-- **Smooth Animations**: Framer Motion animations for enhanced user experience
-- **Dark Theme**: Beautiful dark theme with gradient accents
-- **Interactive Components**: Hover effects, scroll animations, and micro-interactions
-- **Contact Form**: Functional contact form with validation
-- **Project Showcase**: Animated project cards with tech stack display
-- **Skills Section**: Interactive skill cards with hover effects
-- **Scroll to Top**: Smooth scroll-to-top functionality
-- **Mobile Navigation**: Responsive mobile menu
+- Responsive and accessible design
+- Project showcase with live links and GitHub
+- Contact form powered by EmailJS
+- Dark mode support
+- SEO and social sharing optimized
+- Easy content customization
+
+## 🖼️ Demo
+
+[Live Demo](https://your-portfolio.com)
+
+![Portfolio Screenshot](https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=800&q=80)
 
 ## 🛠️ Tech Stack
 
-- **Framework**: Next.js 15 with App Router
-- **Language**: TypeScript
-- **Styling**: Tailwind CSS v4
-- **Animations**: Framer Motion
-- **Icons**: Lucide React
-- **Fonts**: Inter (Google Fonts)
+- [Next.js](https://nextjs.org/)
+- [React](https://react.dev/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [EmailJS](https://www.emailjs.com/) (for contact form)
+- [Jest](https://jestjs.io/) (for testing)
+- [GitHub Actions](https://github.com/features/actions) (CI/CD)
 
-## 📦 Installation
+## 🚦 Getting Started
 
-1. Clone the repository:
+### 1. Clone the repo
+
 ```bash
-git clone <repository-url>
-cd portfolio-recreation
+git clone https://github.com/vishwakarma-31/new_Portfolio.git
+cd new_Portfolio
 ```
 
-2. Install dependencies:
+### 2. Install dependencies
+
 ```bash
 npm install
 ```
 
-3. Run the development server:
+### 3. Configure environment variables
+
+Create a `.env.local` file in the root:
+
+```env
+NEXT_PUBLIC_EMAILJS_SERVICE_ID=your_service_id
+NEXT_PUBLIC_EMAILJS_TEMPLATE_ID=your_template_id
+NEXT_PUBLIC_EMAILJS_USER_ID=your_user_id
+```
+
+See `.env.example` for reference.
+
+### 4. Run the development server
+
 ```bash
 npm run dev
 ```
 
-4. Open [http://localhost:3000](http://localhost:3000) in your browser.
+Visit [http://localhost:3000](http://localhost:3000) to see your portfolio.
 
-## 🎨 Design Features
+## 🖌️ Customization
 
-### Color Scheme
-- **Primary**: Purple to Blue gradient (#667eea to #764ba2)
-- **Background**: Dark theme (#0a0a0a)
-- **Accent**: Purple (#8b5cf6)
-- **Text**: Light gray (#ededed)
+- Edit your project info in `data/projects.ts`.
+- Update bio, skills, and contact details in relevant components.
+- Change layout or styles via Tailwind classes in components.
+- Replace demo images/links with your real content.
+- Update SEO metadata in `app/layout.tsx`.
 
-### Components
-- **Hero Section**: Animated text with floating icons
-- **About Section**: Two-column layout with glass cards
-- **Skills Section**: Interactive skill cards with hover animations
-- **Projects Section**: Project showcase with overlay effects
-- **Contact Section**: Contact form with validation
-- **Navigation**: Fixed navbar with smooth scrolling
+## ♿ Accessibility
 
-### Animations
-- **Page Load**: Staggered animations for content reveal
-- **Scroll Animations**: Elements animate in on scroll
-- **Hover Effects**: Interactive hover states
-- **Floating Elements**: Subtle floating animations
-- **Gradient Backgrounds**: Animated gradient orbs
+This project follows accessibility best practices:
+- Semantic HTML elements
+- Sufficient color contrast
+- Keyboard navigable
+- Alt text for images
 
-## 📱 Responsive Design
+## ✅ Testing
 
-The portfolio is fully responsive with breakpoints:
-- **Mobile**: < 768px
-- **Tablet**: 768px - 1024px
-- **Desktop**: > 1024px
+Basic tests are included with Jest and React Testing Library:
 
-## 🚀 Deployment
+```bash
+npm test
+```
 
-The portfolio is ready for deployment on Vercel:
+## ☁️ Deployment
 
-1. Push your code to GitHub
-2. Connect your repository to Vercel
-3. Deploy with zero configuration
+You can deploy to [Vercel](https://vercel.com/) or any platform that supports Next.js.
 
-## 📝 Customization
+## 🧑‍💻 Contributing
 
-### Personal Information
-Update the following in `src/app/page.tsx`:
-- Name and title
-- Contact information
-- Project details
-- Skills and technologies
+Contributions and suggestions are welcome! Please open an issue or PR.
 
-### Styling
-Modify colors and styles in:
-- `src/app/globals.css` - Global styles and CSS variables
-- `tailwind.config.js` - Tailwind configuration
+## 📝 License
 
-### Content
-- Replace placeholder images with your project screenshots
-- Update project descriptions and links
-- Modify the about section with your story
-
-## 🎯 Performance
-
-- **Lighthouse Score**: 95+ across all metrics
-- **Core Web Vitals**: Optimized for excellent user experience
-- **Image Optimization**: Next.js automatic image optimization
-- **Code Splitting**: Automatic code splitting for faster loads
-
-## 📄 License
-
-This project is open source and available under the [MIT License](LICENSE).
-
-## 🤝 Contributing
-
-Contributions, issues, and feature requests are welcome! Feel free to check the issues page.
-
-## 📞 Contact
-
-- **Email**: your.email@example.com
-- **LinkedIn**: [Your LinkedIn Profile](https://linkedin.com/in/yourprofile)
-- **GitHub**: [Your GitHub Profile](https://github.com/yourusername)
-
----
-
-Built with ❤️ using Next.js, TypeScript, and Tailwind CSS
+This project is licensed under the MIT License. See [LICENSE](./LICENSE) for details.
