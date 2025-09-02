@@ -1,34 +1,93 @@
-'use client';
-
-import React from 'react';
-import { useForm } from 'react-hook-form';
-import { motion } from 'framer-motion';
-import { Send, Mail, User, MessageSquare } from 'lucide-react';
-import emailjs from 'emailjs-com';
-
-type FormData = {
-  name: string;
-  email: string;
-  message: string;
-};
+import React, { useState } from 'react'
+import { motion } from 'framer-motion'
+import { Send, Mail, User, MessageSquare, CheckCircle, AlertCircle } from 'lucide-react'
 
 export default function ContactForm() {
-  const { register, handleSubmit, formState: { errors, isSubmitting }, reset } = useForm<FormData>();
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    message: ''
+  })
+  const [errors, setErrors] = useState({ name: '', email: '', message: '' })
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitStatus, setSubmitStatus] = useState<'success' | 'error' | null>(null)
 
-  const onSubmit = async (data: FormData) => {
-    try {
-      await emailjs.send(
-        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!,
-        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!,
-        data,
-        process.env.NEXT_PUBLIC_EMAILJS_USER_ID
-      );
-      alert('Message sent successfully!');
-      reset();
-    } catch (error) {
-      alert('Failed to send message. Please try again later.');
+  const validateForm = () => {
+    const newErrors = { name: '', email: '', message: '' }
+
+    if (!formData.name.trim()) {
+      newErrors.name = 'Name is required'
     }
-  };
+
+    if (!formData.email.trim()) {
+      newErrors.email = 'Email is required'
+    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
+      newErrors.email = 'Please enter a valid email'
+    }
+
+    if (!formData.message.trim()) {
+      newErrors.message = 'Message is required'
+    }
+
+    setErrors(newErrors)
+    return !newErrors.name && !newErrors.email && !newErrors.message
+  }
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }))
+    // Clear error when user starts typing
+    if (errors[name as keyof typeof errors]) {
+      setErrors(prev => ({
+        ...prev,
+        [name]: ''
+      }))
+    }
+  }
+
+  const onSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+
+    if (!validateForm()) {
+      return
+    }
+
+    setIsSubmitting(true)
+    setSubmitStatus(null)
+
+    try {
+      // Send to our backend API
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/contact`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          message: formData.message
+        })
+      })
+
+      const result = await response.json()
+
+      if (response.ok && result.success) {
+        setSubmitStatus('success')
+        setFormData({ name: '', email: '', message: '' })
+      } else {
+        throw new Error(result.message || 'Failed to send message')
+      }
+    } catch (error) {
+      console.error('Form submission error:', error)
+      setSubmitStatus('error')
+    } finally {
+      setIsSubmitting(false)
+    }
+  }
 
   const inputClasses = "w-full px-4 py-3 bg-secondary/50 border border-border rounded-lg focus:outline-none focus:border-primary transition-colors text-foreground placeholder-gray-400";
   const labelClasses = "block text-sm font-medium mb-2 text-gray-300";
@@ -47,7 +106,7 @@ export default function ContactForm() {
         <h2 className="text-2xl font-bold text-gradient">Send a Message</h2>
       </div>
 
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+      <form onSubmit={onSubmit} className="space-y-6">
         <div className="grid md:grid-cols-2 gap-6">
           <div>
             <label htmlFor="name" className={labelClasses}>
@@ -57,11 +116,13 @@ export default function ContactForm() {
             <input
               type="text"
               id="name"
-              {...register('name', { required: 'Name is required' })}
+              name="name"
+              value={formData.name}
+              onChange={handleInputChange}
               className={inputClasses}
               placeholder="Your full name"
             />
-            {errors.name && <span className="text-red-400 text-sm mt-1 block">{errors.name.message}</span>}
+            {errors.name && <span className="text-red-400 text-sm mt-1 block">{errors.name}</span>}
           </div>
 
           <div>
@@ -72,17 +133,13 @@ export default function ContactForm() {
             <input
               type="email"
               id="email"
-              {...register('email', {
-                required: 'Email is required',
-                pattern: {
-                  value: /^[^@]+@[^@]+\.[^@]+$/,
-                  message: 'Please enter a valid email'
-                }
-              })}
+              name="email"
+              value={formData.email}
+              onChange={handleInputChange}
               className={inputClasses}
               placeholder="your.email@example.com"
             />
-            {errors.email && <span className="text-red-400 text-sm mt-1 block">{errors.email.message}</span>}
+            {errors.email && <span className="text-red-400 text-sm mt-1 block">{errors.email}</span>}
           </div>
         </div>
 
@@ -93,12 +150,14 @@ export default function ContactForm() {
           </label>
           <textarea
             id="message"
+            name="message"
             rows={6}
-            {...register('message', { required: 'Message is required' })}
+            value={formData.message}
+            onChange={handleInputChange}
             className={`${inputClasses} resize-none`}
             placeholder="Tell me about your project, idea, or just say hello..."
           />
-          {errors.message && <span className="text-red-400 text-sm mt-1 block">{errors.message.message}</span>}
+          {errors.message && <span className="text-red-400 text-sm mt-1 block">{errors.message}</span>}
         </div>
 
         <motion.button

@@ -1,31 +1,10 @@
-import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import React from "react";
 import "./globals.css";
 
-const inter = Inter({ subsets: ["latin"] });
-
-export const metadata: Metadata = {
-  title: "Portfolio - Full Stack Developer",
-  description: "Modern portfolio showcasing full-stack development skills and projects",
-  keywords: ["portfolio", "developer", "full-stack", "react", "nextjs", "typescript"],
-  authors: [{ name: "Your Name" }],
-};
-
-export const viewport = {
-  width: "device-width",
-  initialScale: 1,
-};
-
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function Layout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className="dark">
-      <body className={inter.className}>
-        {children}
-      </body>
-    </html>
+    <div className="min-h-screen bg-gray-900 text-white">
+      {children}
+    </div>
   );
 }
