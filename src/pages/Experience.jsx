@@ -15,14 +15,14 @@ const Experience = () => {
       icon: Award,
       type: 'Certification'
     },
-    {
-      title: 'Backend Developer',
-      company: 'IIT Kanpur',
-      period: '2024',
-      description: 'Completed an intensive program focused on server-side development, APIs, and database integration. Gained hands-on experience with backend frameworks, RESTful architecture, and building scalable, secure web applications.',
-      icon: Award,
-      type: 'Certification'
-    },
+    // {
+    //   title: 'Backend Developer',
+    //   company: 'IIT Kanpur',
+    //   period: '2024',
+    //   description: 'Completed an intensive program focused on server-side development, APIs, and database integration. Gained hands-on experience with backend frameworks, RESTful architecture, and building scalable, secure web applications.',
+    //   icon: Award,
+    //   type: 'Certification'
+    // },
     {
       title: 'Node.js',
       company: 'Infosys SpringBoard',

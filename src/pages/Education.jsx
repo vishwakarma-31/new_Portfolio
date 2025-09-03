@@ -13,28 +13,28 @@ const Education = () => {
       school: 'B.Tech (Information Technology)',
       mascot: '📘',
       year: '2022-2026',
-      achievements: ['GPA: 7.55', 'Field: Information Technology'],
+      achievements: ['GPA: 6.55', 'Field: Information Technology'],
       skills: ['Operating system', 'Computer Networks', 'DataBase Management', 'OOPs', 'Big Data', 'Machine Learning'],
       description: 'Gained a solid foundation in computing concepts through hands-on labs, industry-oriented coursework, and collaborative projects.'
     },
-    {
-      degree: 'Mother Teresa Mission Higher Secondary School',
-      school: '12th (ICSE)',
-      mascot: '📗',
-      year: '2021-2022',
-      achievements: ['Percentage: 85.6%', 'Field: Science'],
-      skills: ['Maths', 'Physics', 'Chemistry', 'Computer'],
-      description: 'Gained strong foundational knowledge in Mathematics, Physics, and Chemistry, developing a keen analytical mindset and problem-solving approach.'
-    },
-    {
-      degree: 'Mother Teresa Mission Higher Secondary School',
-      school: '10th (ICSE)',
-      mascot: '📗',
-      year: '2019-2020',
-      achievements: ['Percentage: 90.2%', 'Field: Science'],
-      skills: ['Maths', 'Physics', 'Chemistry', 'Computer'],
-      description: 'Gained strong foundational knowledge in Mathematics, Physics, and Chemistry, developing a keen analytical mindset and problem-solving approach.'
-    }
+    // {
+    //   degree: 'Jai Naryan Vidhya Mandir Inter College',
+    //   school: '12th (CBSE)',
+    //   mascot: '📗',
+    //   year: '2021-2022',
+    //   achievements: ['Percentage: 55.6%', 'Field: Science'],
+    //   skills: ['Maths', 'Physics', 'Chemistry', 'Computer'],
+    //   description: 'Gained strong foundational knowledge in Mathematics, Physics, and Chemistry, developing a keen analytical mindset and problem-solving approach.'
+    // },
+    // {
+    //   degree: 'Jai Naryan Vidhya Mandir Inter College',
+    //   school: '10th (UP)',
+    //   mascot: '📗',
+    //   year: '2019-2020',
+    //   achievements: ['Percentage: 74.5%', 'Field: Science'],
+    //   skills: ['Maths', 'Physics', 'Chemistry', 'Computer'],
+    //   description: 'Gained strong foundational knowledge in Mathematics, Physics, and Chemistry, developing a keen analytical mindset and problem-solving approach.'
+    // }
   ]
 
   return (
