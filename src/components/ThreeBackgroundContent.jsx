@@ -3,18 +3,18 @@ import { Canvas, useFrame } from '@react-three/fiber'
 import { Points, PointMaterial } from '@react-three/drei'
 import * as THREE from 'three'
 
-function Stars() {
+function Stars({ starCount = 3000, starSize = 0.03 }) {
   const ref = useRef()
 
   const [sphere] = useMemo(() => {
-    const sphere = new Float32Array(3000 * 3) // Reduced from 5000 to 3000 for better performance
-    for (let i = 0; i < 3000; i++) {
+    const sphere = new Float32Array(starCount * 3)
+    for (let i = 0; i < starCount; i++) {
       sphere[i * 3] = (Math.random() - 0.5) * 100
       sphere[i * 3 + 1] = (Math.random() - 0.5) * 100
       sphere[i * 3 + 2] = (Math.random() - 0.5) * 100
     }
     return [sphere]
-  }, [])
+  }, [starCount])
 
   useFrame((state, delta) => {
     if (ref.current) {
@@ -29,7 +29,7 @@ function Stars() {
         <PointMaterial
           transparent
           color="#ffffff"
-          size={0.03} // Smaller size for better performance
+          size={starSize}
           sizeAttenuation={true}
           depthWrite={false}
           alphaTest={0.001}
@@ -63,7 +63,7 @@ function FloatingGeometry() {
   )
 }
 
-export default function ThreeBackgroundContent() {
+export default function ThreeBackgroundContent({ starCount = 3000, starSize = 0.03 }) {
   return (
     <Canvas
       camera={{ position: [0, 0, 1], fov: 75 }}
@@ -73,7 +73,7 @@ export default function ThreeBackgroundContent() {
     >
       <ambientLight intensity={0.05} />
       <pointLight position={[10, 10, 10]} intensity={0.2} />
-      <Stars />
+      <Stars starCount={starCount} starSize={starSize} />
       <FloatingGeometry />
     </Canvas>
   )

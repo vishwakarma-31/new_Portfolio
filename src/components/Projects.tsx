@@ -4,7 +4,26 @@ import { motion } from 'framer-motion';
 import { ExternalLink, Github, Eye } from 'lucide-react';
 import { projects } from '../data/projects';
 
-export default function Projects() {
+interface Project {
+  name: string;
+  description: string;
+  link: string;
+  github: string;
+  tags: string[];
+}
+
+interface ProjectsProps {
+  projects?: Project[];
+  title?: string;
+  description?: string;
+}
+
+export default function Projects({
+  projects: projectsProp,
+  title = "My Projects",
+  description = "A showcase of my recent work and side projects that demonstrate my skills and passion for development."
+}: ProjectsProps) {
+  const projectsToUse = projectsProp || projects;
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -36,9 +55,9 @@ export default function Projects() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl font-bold mb-6 text-gradient">My Projects</h2>
+          <h2 className="text-4xl font-bold mb-6 text-gradient">{title}</h2>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-            A showcase of my recent work and side projects that demonstrate my skills and passion for development.
+            {description}
           </p>
         </motion.div>
 
@@ -49,7 +68,7 @@ export default function Projects() {
           viewport={{ once: true }}
           className="grid lg:grid-cols-2 gap-8"
         >
-          {projects.map((project, index) => (
+          {projectsToUse.map((project, index) => (
             <motion.div
               key={project.name}
               variants={itemVariants}

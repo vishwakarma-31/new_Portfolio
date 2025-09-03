@@ -1,7 +1,11 @@
 import React, { useEffect, useRef } from 'react'
 import { gsap } from 'gsap'
 
-const FallingStarsEffect = () => {
+const FallingStarsEffect = ({
+  interval = 800,
+  color = 'from-cyan-400',
+  height = 8
+}) => {
   const containerRef = useRef(null)
 
   useEffect(() => {
@@ -10,7 +14,7 @@ const FallingStarsEffect = () => {
 
     const createFallingStar = () => {
       const star = document.createElement('div')
-      star.className = 'absolute w-px h-8 bg-gradient-to-b from-cyan-400 to-transparent rounded-full'
+      star.className = `absolute w-px h-${height} bg-gradient-to-b ${color} to-transparent rounded-full`
       star.style.left = Math.random() * 100 + '%'
       star.style.top = '-32px'
 
@@ -41,16 +45,16 @@ const FallingStarsEffect = () => {
       })
     }
 
-    const interval = setInterval(createFallingStar, 800)
+    const intervalId = setInterval(createFallingStar, interval)
 
     return () => {
-      clearInterval(interval)
+      clearInterval(intervalId)
       // Clean up any remaining stars
       while (container.firstChild) {
         container.removeChild(container.firstChild)
       }
     }
-  }, [])
+  }, [interval, color, height])
 
   return (
     <div

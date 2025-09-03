@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Send, Mail, User, MessageSquare, CheckCircle, AlertCircle } from 'lucide-react'
 
-export default function ContactForm() {
+export default function ContactForm({ apiUrl = `${import.meta.env.VITE_API_URL}/api/contact` }) {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -60,7 +60,7 @@ export default function ContactForm() {
 
     try {
       // Send to our backend API
-      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/contact`, {
+      const response = await fetch(apiUrl, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

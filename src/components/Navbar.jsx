@@ -4,7 +4,17 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { useTheme } from '../context/ThemeContext'
 import { Sun, Moon, Menu, X } from 'lucide-react'
 
-const Navbar = () => {
+const Navbar = ({
+  navItems = [
+    { name: 'Home', path: '/' },
+    { name: 'Skills', path: '/skills' },
+    { name: 'Experience', path: '/experience' },
+    { name: 'Projects', path: '/projects' },
+    { name: 'Education', path: '/education' },
+    { name: 'Contact', path: '/contact' },
+  ],
+  brandName = 'Aryan'
+}) => {
   const { theme, toggleTheme } = useTheme()
   const location = useLocation()
   const [isScrolled, setIsScrolled] = useState(false)
@@ -17,15 +27,6 @@ const Navbar = () => {
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
-
-  const navItems = [
-    { name: 'Home', path: '/' },
-    { name: 'Skills', path: '/skills' },
-    { name: 'Experience', path: '/experience' },
-    { name: 'Projects', path: '/projects' },
-    { name: 'Education', path: '/education' },
-    { name: 'Contact', path: '/contact' },
-  ]
 
   return (
     <>
@@ -47,7 +48,7 @@ const Navbar = () => {
               whileTap={{ scale: 0.95 }}
             >
               <Link to="/" className="text-xl font-bold bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent hover:from-purple-400 hover:to-cyan-400 transition-all duration-300">
-                Aryan
+                {brandName}
               </Link>
             </motion.div>
 

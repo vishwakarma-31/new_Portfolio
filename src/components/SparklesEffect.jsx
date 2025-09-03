@@ -1,7 +1,11 @@
 import React, { useEffect, useRef } from 'react'
 import { gsap } from 'gsap'
 
-const SparklesEffect = () => {
+const SparklesEffect = ({
+  interval = 300,
+  color = 'bg-cyan-400',
+  size = 'w-1 h-1'
+}) => {
   const containerRef = useRef(null)
 
   useEffect(() => {
@@ -10,7 +14,7 @@ const SparklesEffect = () => {
 
     const createSparkle = () => {
       const sparkle = document.createElement('div')
-      sparkle.className = 'absolute w-1 h-1 bg-cyan-400 rounded-full animate-pulse'
+      sparkle.className = `absolute ${size} ${color} rounded-full animate-pulse`
       sparkle.style.left = Math.random() * 100 + '%'
       sparkle.style.top = Math.random() * 100 + '%'
 
@@ -44,16 +48,16 @@ const SparklesEffect = () => {
       )
     }
 
-    const interval = setInterval(createSparkle, 300)
+    const intervalId = setInterval(createSparkle, interval)
 
     return () => {
-      clearInterval(interval)
+      clearInterval(intervalId)
       // Clean up any remaining sparkles
       while (container.firstChild) {
         container.removeChild(container.firstChild)
       }
     }
-  }, [])
+  }, [interval, color, size])
 
   return (
     <div

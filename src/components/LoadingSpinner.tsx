@@ -2,7 +2,11 @@
 
 import { motion } from 'framer-motion';
 
-export default function LoadingSpinner() {
+export default function LoadingSpinner({
+  text = "Loading...",
+  size = 16,
+  color = "border-primary/30 border-t-primary"
+}) {
   return (
     <div className="fixed inset-0 bg-background/80 backdrop-blur-sm flex items-center justify-center z-50">
       <motion.div
@@ -14,7 +18,7 @@ export default function LoadingSpinner() {
         <motion.div
           animate={{ rotate: 360 }}
           transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
-          className="w-16 h-16 border-4 border-primary/30 border-t-primary rounded-full mx-auto mb-4"
+          className={`w-${size} h-${size} border-4 ${color} rounded-full mx-auto mb-4`}
         />
         <motion.p
           initial={{ opacity: 0 }}
@@ -22,7 +26,7 @@ export default function LoadingSpinner() {
           transition={{ delay: 0.2 }}
           className="text-foreground font-medium"
         >
-          Loading...
+          {text}
         </motion.p>
       </motion.div>
     </div>

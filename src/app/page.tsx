@@ -5,6 +5,9 @@ import { ArrowRight, Download, Code, Palette, Database, Smartphone } from 'lucid
 import { useState, useEffect } from 'react';
 import Navbar from '@/components/Navbar';
 import ScrollToTop from '@/components/ScrollToTop';
+import AdvancedParticles from '@/components/AdvancedParticles';
+import FallingStarsEffect from '@/components/FallingStarsEffect';
+import SparklesEffect from '@/components/SparklesEffect';
 
 export default function Home() {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -42,11 +45,31 @@ export default function Home() {
   ];
 
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <div className="min-h-screen bg-background text-foreground relative">
+      {/* Enhanced background effects for home page */}
+      <AdvancedParticles
+        particleCount={50}
+        colors={['bg-cyan-400/40', 'bg-purple-400/30', 'bg-pink-400/35', 'bg-blue-400/30', 'bg-emerald-400/35']}
+        sizeRange={{ min: 2, max: 6 }}
+        className="fixed inset-0 pointer-events-none z-0"
+      />
+
+      <FallingStarsEffect
+        interval={800}
+        color="from-cyan-400/80"
+        height={8}
+      />
+
+      <SparklesEffect
+        interval={300}
+        color="bg-cyan-400/60"
+        size="w-1 h-1"
+      />
+
       <Navbar />
-      
+
       {/* Hero Section */}
-      <section className="min-h-screen flex items-center justify-center relative overflow-hidden pt-20">
+      <section className="min-h-screen flex items-center justify-center relative overflow-hidden pt-20 z-10">
         {/* Background Effects */}
         <div className="absolute inset-0 bg-gradient-to-br from-teal-900/10 via-blue-900/10 to-indigo-900/10"></div>
         <div className="absolute inset-0">
@@ -72,7 +95,7 @@ export default function Home() {
           variants={containerVariants}
           initial="hidden"
           animate={isLoaded ? "visible" : "hidden"}
-          className="text-center z-10 max-w-5xl mx-auto px-6"
+          className="text-center z-20 max-w-5xl mx-auto px-6 relative"
         >
           <motion.div
             variants={itemVariants}
@@ -163,7 +186,7 @@ export default function Home() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 2, duration: 1 }}
-          className="absolute bottom-12 left-1/2 transform -translate-x-1/2"
+          className="absolute bottom-12 left-1/2 transform -translate-x-1/2 z-20"
         >
           <motion.div
             animate={{ y: [0, 10, 0] }}

@@ -4,12 +4,12 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
 gsap.registerPlugin(ScrollTrigger)
 
-export const useGSAPAnimations = () => {
+export const useGSAPAnimations = (enabled = true) => {
   const containerRef = useRef(null)
 
   useEffect(() => {
-    // Only run animations if we're on the home page to prevent conflicts during page transitions
-    if (window.location.pathname !== '/') return
+    // Only run animations if enabled
+    if (!enabled) return
 
     const ctx = gsap.context(() => {
       // Magnetic button effect - only for home page
@@ -52,7 +52,7 @@ export const useGSAPAnimations = () => {
     }, containerRef)
 
     return () => ctx.revert()
-  }, [])
+  }, [enabled])
 
   return containerRef
 }

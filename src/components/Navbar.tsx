@@ -4,7 +4,16 @@ import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Menu, X, Home, User, Code, Briefcase, Mail, Sun, Moon } from 'lucide-react';
 
-export default function Navbar() {
+export default function Navbar({
+  navItems = [
+    { name: 'Home', href: '/', icon: Home },
+    { name: 'About', href: '/about', icon: User },
+    { name: 'Skills', href: '/skills', icon: Code },
+    { name: 'Projects', href: '/projects', icon: Briefcase },
+    { name: 'Contact', href: '/contact', icon: Mail },
+  ],
+  brandName = 'Portfolio'
+}) {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [isDark, setIsDark] = useState(true);
@@ -16,14 +25,6 @@ export default function Navbar() {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-
-  const navItems = [
-    { name: 'Home', href: '/', icon: Home },
-    { name: 'About', href: '/about', icon: User },
-    { name: 'Skills', href: '/skills', icon: Code },
-    { name: 'Projects', href: '/projects', icon: Briefcase },
-    { name: 'Contact', href: '/contact', icon: Mail },
-  ];
 
   const toggleTheme = () => {
     const newTheme = !isDark;
@@ -47,7 +48,7 @@ export default function Navbar() {
       {/* Main Navbar Container */}
       <div className="relative">
         {/* Background with gradient border */}
-        <div className="absolute inset-0 bg-gradient-to-r from-teal-500 to-blue-500 rounded-full blur-sm opacity-75"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-teal-500 to-blue-500 rounded-full blur-sm opacity-15"></div>
         <div className="relative bg-[#0D222B] rounded-full px-6 py-3 border border-gray-700/50">
           <div className="flex items-center space-x-8">
             {/* Logo */}
@@ -55,7 +56,7 @@ export default function Navbar() {
               whileHover={{ scale: 1.05 }}
               className="text-lg font-bold text-white cursor-pointer"
             >
-              Portfolio
+              {brandName}
             </motion.div>
 
             {/* Desktop Navigation */}

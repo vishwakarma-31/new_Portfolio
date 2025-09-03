@@ -1,7 +1,13 @@
 import React, { useEffect, useRef } from 'react'
 import { gsap } from 'gsap'
 
-const AdvancedParticles = () => {
+const AdvancedParticles = ({
+  particleCount = 50,
+  colors = ['bg-cyan-400', 'bg-purple-400', 'bg-pink-400', 'bg-blue-400', 'bg-emerald-400'],
+  sizeRange = { min: 2, max: 8 },
+  className = "fixed inset-0 pointer-events-none z-0",
+  style = { mixBlendMode: 'screen' }
+}) => {
   const containerRef = useRef(null)
 
   useEffect(() => {
@@ -9,15 +15,13 @@ const AdvancedParticles = () => {
     if (!container) return
 
     const particles = []
-    const particleCount = 50
 
     for (let i = 0; i < particleCount; i++) {
       const particle = document.createElement('div')
       particle.className = 'absolute rounded-full pointer-events-none'
 
       // Random size and color
-      const size = Math.random() * 6 + 2
-      const colors = ['bg-cyan-400', 'bg-purple-400', 'bg-pink-400', 'bg-blue-400', 'bg-emerald-400']
+      const size = Math.random() * (sizeRange.max - sizeRange.min) + sizeRange.min
       const color = colors[Math.floor(Math.random() * colors.length)]
 
       particle.className += ` ${color} opacity-60`
@@ -62,13 +66,13 @@ const AdvancedParticles = () => {
         }
       })
     }
-  }, [])
+  }, [particleCount, colors, sizeRange])
 
   return (
     <div
       ref={containerRef}
-      className="fixed inset-0 pointer-events-none z-0"
-      style={{ mixBlendMode: 'screen' }}
+      className={className}
+      style={style}
     />
   )
 }
